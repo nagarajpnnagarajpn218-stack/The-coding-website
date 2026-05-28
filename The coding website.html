@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ultimate Coding Universe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#050816;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    body::-webkit-scrollbar{
+      width:10px;
+    }
+
+    body::-webkit-scrollbar-thumb{
+      background:linear-gradient(#7be7ff,#4fc3ff);
+      border-radius:10px;
+    }
+
+    .background{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      background:
+      radial-gradient(circle at top left,#9befff33,transparent 30%),
+      radial-gradient(circle at bottom right,#4fc3ff44,transparent 30%),
+      linear-gradient(180deg,#050816,#090b25,#050816);
+    }
+
+    .glow{
+      position:absolute;
+      border-radius:50%;
+      filter:blur(80px);
+      opacity:.5;
+      animation:float 8s infinite ease-in-out alternate;
+    }
+
+    .glow1{
+      width:300px;
+      height:300px;
+      background:#9befff;
+      top:10%;
+      left:5%;
+    }
+
+    .glow2{
+      width:350px;
+      height:350px;
+      background:#5fd7ff;
+      bottom:5%;
+      right:5%;
+    }
+
+    @keyframes float{
+      from{transform:translateY(0px) translateX(0px);}
+      to{transform:translateY(40px) translateX(20px);}
+    }
+
+    header{
+      width:100%;
+      position:fixed;
+      top:0;
+      left:0;
+      padding:18px 8%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background:rgba(0,0,0,0.35);
+      backdrop-filter:blur(12px);
+      z-index:1000;
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
+    .logo{
+      font-family:'Orbitron',sans-serif;
+      font-size:2rem;
+      font-weight:800;
+      color:#7be7ff;
+      text-shadow:0 0 15px #7be7ff;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:white;
+      margin-left:28px;
+      font-weight:500;
+      transition:0.3s;
+      position:relative;
+    }
+
+    nav a::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-6px;
+      width:0;
+      height:2px;
+      background:#9befff;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#ff9be8;
+    }
+
+    nav a:hover::after{
+      width:100%;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:120px 8% 80px;
+      position:relative;
+    }
+
+    .hero-content h1{
+      font-family:'Orbitron',sans-serif;
+      font-size:5rem;
+      line-height:1.1;
+      background:linear-gradient(90deg,#7be7ff,#4fc3ff,#b8f7ff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:shine 5s linear infinite;
+    }
+
+    @keyframes shine{
+      0%{filter:hue-rotate(0deg);}
+      100%{filter:hue-rotate(360deg);}
+    }
+
+    .hero-content p{
+      margin-top:25px;
+      color:#c9d6ff;
+      max-width:850px;
+      font-size:1.2rem;
+      line-height:1.8;
+    }
+
+    .hero-buttons{
+      margin-top:40px;
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:16px 38px;
+      border:none;
+      border-radius:50px;
+      font-size:1rem;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.4s;
+      text-decoration:none;
+      display:inline-block;
+    }
+
+    .primary{
+      background:linear-gradient(90deg,#7be7ff,#5fd7ff);
+      color:white;
+      box-shadow:0 0 20px #7be7ff88;
+    }
+
+    .secondary{
+      border:2px solid #7be7ff;
+      color:#7be7ff;
+      background:transparent;
+    }
+
+    .btn:hover{
+      transform:translateY(-6px) scale(1.05);
+      box-shadow:0 0 25px #4fc3ff;
+    }
+
+    section{
+      padding:100px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-title h2{
+      font-size:3rem;
+      font-family:'Orbitron',sans-serif;
+      color:#ff9be8;
+      margin-bottom:15px;
+    }
+
+    .section-title p{
+      color:#c9d6ff;
+      max-width:800px;
+      margin:auto;
+      line-height:1.8;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      padding:35px;
+      border-radius:25px;
+      backdrop-filter:blur(12px);
+      transition:0.4s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(135deg,#7be7ff22,#4fc3ff22);
+      opacity:0;
+      transition:0.4s;
+    }
+
+    .card:hover::before{
+      opacity:1;
+    }
+
+    .card:hover{
+      transform:translateY(-12px);
+      box-shadow:0 0 30px rgba(0,225,255,0.2);
+    }
+
+    .card h3{
+      font-size:1.6rem;
+      margin-bottom:18px;
+      color:#ff9be8;
+      position:relative;
+      z-index:2;
+    }
+
+    .card p{
+      color:#d6dcff;
+      line-height:1.8;
+      position:relative;
+      z-index:2;
+    }
+
+    .languages{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+    }
+
+    .language-box{
+      background:rgba(255,255,255,0.04);
+      border-radius:20px;
+      padding:30px;
+      text-align:center;
+      border:1px solid rgba(255,255,255,0.08);
+      transition:0.4s;
+    }
+
+    .language-box:hover{
+      transform:scale(1.05);
+      background:linear-gradient(135deg,#7be7ff22,#5fd7ff22);
+    }
+
+    .language-box h4{
+      font-size:1.5rem;
+      color:#ff9be8;
+      margin-bottom:10px;
+    }
+
+    .code-section{
+      background:rgba(255,255,255,0.03);
+      border-radius:30px;
+      padding:40px;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .code-box{
+      background:#0d1229;
+      padding:30px;
+      border-radius:20px;
+      overflow:auto;
+      border:1px solid rgba(255,255,255,0.1);
+      margin-top:30px;
+    }
+
+    pre{
+      color:#b8f7ff;
+      font-size:0.95rem;
+      line-height:1.8;
+    }
+
+    .timeline{
+      display:flex;
+      flex-direction:column;
+      gap:30px;
+    }
+
+    .timeline-item{
+      display:flex;
+      gap:25px;
+      background:rgba(255,255,255,0.04);
+      padding:30px;
+      border-radius:25px;
+      border-left:5px solid #7be7ff;
+      transition:0.3s;
+    }
+
+    .timeline-item:hover{
+      transform:translateX(10px);
+    }
+
+    .timeline-item span{
+      font-size:2rem;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:25px;
+      margin-top:50px;
+    }
+
+    .stat{
+      background:rgba(255,255,255,0.05);
+      padding:35px;
+      border-radius:20px;
+      text-align:center;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat h3{
+      font-size:3rem;
+      color:#ff9be8;
+    }
+
+    .stat p{
+      margin-top:10px;
+      color:#d6dcff;
+    }
+
+    .contact{
+      text-align:center;
+      background:linear-gradient(135deg,#7be7ff22,#4fc3ff22);
+      border-radius:35px;
+      border:1px solid rgba(255,255,255,0.1);
+      padding:70px 30px;
+    }
+
+    .contact h2{
+      font-size:3rem;
+      color:#ff9be8;
+      font-family:'Orbitron',sans-serif;
+    }
+
+    .contact p{
+      margin-top:20px;
+      color:#d6dcff;
+      font-size:1.1rem;
+    }
+
+    .contact .btn{
+      margin-top:30px;
+    }
+
+    footer{
+      text-align:center;
+      padding:35px;
+      color:#9aa6d1;
+      border-top:1px solid rgba(255,255,255,0.08);
+      margin-top:80px;
+    }
+
+    .typing{
+      color:#b8f7ff;
+      border-right:3px solid #b8f7ff;
+      white-space:nowrap;
+      overflow:hidden;
+      width:0;
+      margin:auto;
+      animation:typing 5s steps(40,end) infinite alternate, blink .7s infinite;
+      font-family:'Orbitron',sans-serif;
+      font-size:1.4rem;
+      margin-top:25px;
+    }
+
+    @keyframes typing{
+      from{width:0;}
+      to{width:100%;}
+    }
+
+    @keyframes blink{
+      50%{border-color:transparent;}
+    }
+
+    @media(max-width:900px){
+      .hero-content h1{
+        font-size:3.2rem;
+      }
+
+      nav{
+        display:none;
+      }
+    }
+
+    @media(max-width:600px){
+      .hero-content h1{
+        font-size:2.4rem;
+      }
+
+      .section-title h2{
+        font-size:2rem;
+      }
+
+      .contact h2{
+        font-size:2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="background">
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+  </div>
+
+  <header>
+    <div class="logo">CODEVERSE</div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#languages">Languages</a>
+      <a href="#code">Code</a>
+      <a href="#journey">Journey</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>ULTIMATE CODING WEBSITE</h1>
+
+      <div class="typing">Build. Learn. Create. Dominate The Digital Universe.</div>
+
+      <p>
+        Welcome to the futuristic coding universe where developers transform ideas into reality.
+        This website is designed with glowing neon effects, advanced UI design, coding examples,
+        smooth animations, futuristic layouts, and interactive sections. Explore programming,
+        web development, AI, gaming, and the future of technology in one epic experience.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#features" class="btn primary">Explore Universe</a>
+        <a href="#code" class="btn secondary">View Code</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="section-title">
+      <h2>Epic Features</h2>
+      <p>
+        Designed for modern developers with futuristic animations, responsive layouts,
+        neon glow aesthetics, and advanced coding inspiration.
+      </p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>⚡ Ultra Fast Design</h3>
+        <p>
+          Optimized layouts with modern CSS effects, smooth transitions, and responsive performance
+          that works perfectly on mobile, tablet, and desktop devices.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🎮 Gaming Inspired UI</h3>
+        <p>
+          Inspired by futuristic gaming interfaces with neon borders, glowing light blue futuristic backgrounds,
+          animated glow effects, and immersive user interaction.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🤖 AI Coding Future</h3>
+        <p>
+          Learn modern programming concepts, web development, JavaScript logic,
+          and AI-inspired futuristic digital design.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🌌 Responsive Universe</h3>
+        <p>
+          Flexible grid layouts, mobile optimization, adaptive animations,
+          and modern user experience built for every screen size.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="languages">
+    <div class="section-title">
+      <h2>Popular Coding Languages</h2>
+      <p>
+        Master the technologies powering websites, games, AI systems, and futuristic applications.
+      </p>
+    </div>
+
+    <div class="languages">
+      <div class="language-box">
+        <h4>HTML</h4>
+        <p>Structure beautiful futuristic websites.</p>
+      </div>
+
+      <div class="language-box">
+        <h4>CSS</h4>
+        <p>Create glowing neon designs and animations.</p>
+      </div>
+
+      <div class="language-box">
+        <h4>JavaScript</h4>
+        <p>Add interactivity, logic, and dynamic effects.</p>
+      </div>
+
+      <div class="language-box">
+        <h4>Python</h4>
+        <p>Develop AI systems, automation, and apps.</p>
+      </div>
+
+      <div class="language-box">
+        <h4>C++</h4>
+        <p>Power high-performance games and engines.</p>
+      </div>
+
+      <div class="language-box">
+        <h4>Java</h4>
+        <p>Build enterprise applications and Android apps.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="code">
+    <div class="section-title">
+      <h2>Live Coding Style</h2>
+      <p>
+        Explore a futuristic example of modern JavaScript animation logic.
+      </p>
+    </div>
+
+    <div class="code-section">
+      <h3 style="color:#ff9be8;font-size:2rem;">Neon Animation Example</h3>
+
+      <div class="code-box">
+<pre>
+const button = document.querySelector('.btn');
+
+button.addEventListener('mouseenter', () => {
+    button.style.transform = 'scale(1.1)';
+    button.style.boxShadow = '0 0 30px cyan';
+});
+
+button.addEventListener('mouseleave', () => {
+    button.style.transform = 'scale(1)';
+    button.style.boxShadow = '0 0 10px cyan';
+});
+</pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="journey">
+    <div class="section-title">
+      <h2>Developer Journey</h2>
+      <p>
+        Every legendary developer begins with one line of code.
+      </p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <span>🚀</span>
+        <div>
+          <h3>Step 1 - Learn Basics</h3>
+          <p>Start with HTML, CSS, and JavaScript fundamentals.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span>💡</span>
+        <div>
+          <h3>Step 2 - Create Projects</h3>
+          <p>Build gaming websites, portfolios, dashboards, and apps.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span>⚔️</span>
+        <div>
+          <h3>Step 3 - Master Skills</h3>
+          <p>Learn APIs, databases, backend development, and AI integration.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span>🌍</span>
+        <div>
+          <h3>Step 4 - Launch To The World</h3>
+          <p>Deploy your futuristic creations and inspire the coding universe.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <h3>10K+</h3>
+        <p>Developers Inspired</p>
+      </div>
+
+      <div class="stat">
+        <h3>500+</h3>
+        <p>Creative Projects</p>
+      </div>
+
+      <div class="stat">
+        <h3>120+</h3>
+        <p>Animations Designed</p>
+      </div>
+
+      <div class="stat">
+        <h3>24/7</h3>
+        <p>Innovation Energy</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact">
+      <h2>Start Your Coding Empire</h2>
+      <p>
+        Enter the future of coding and build powerful digital experiences.
+        Keep learning, keep creating, and keep evolving.
+      </p>
+
+      <a href="#home" class="btn primary">Back To Top</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      © 2026 CODEVERSE | Ultimate Futuristic Coding Website Experience
+    </p>
+    <section>
+    <div class="section-title">
+      <h2>Advanced Technology Zones</h2>
+      <p>
+        Explore futuristic areas of technology including cybersecurity, artificial intelligence,
+        cloud computing, robotics, and game development.
+      </p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>🛡️ Cyber Security</h3>
+        <p>
+          Learn how ethical hackers secure systems, protect networks,
+          and defend applications from digital attacks.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>☁️ Cloud Computing</h3>
+        <p>
+          Understand modern cloud platforms, scalable hosting,
+          storage systems, and futuristic web infrastructure.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🎨 UI / UX Design</h3>
+        <p>
+          Create immersive interfaces with smooth animations,
+          user-friendly layouts, and modern digital experiences.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🧠 Artificial Intelligence</h3>
+        <p>
+          Discover machine learning, neural networks,
+          and intelligent futuristic applications.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <h2>Massive Coding Library</h2>
+      <p>
+        Learn different types of coding concepts with futuristic examples.
+      </p>
+    </div>
+
+    <div class="code-section">
+      <div class="code-box">
+<pre>
+function createGalaxy(){
+   const stars = [];
+
+   for(let i = 0; i < 1000; i++){
+      stars.push({
+         x: Math.random() * window.innerWidth,
+         y: Math.random() * window.innerHeight,
+         size: Math.random() * 4
+      });
+   }
+
+   return stars;
+}
+
+console.log(createGalaxy());
+</pre>
+      </div>
+
+      <div class="code-box" style="margin-top:40px;">
+<pre>
+const developer = {
+   name: 'Future Creator',
+   skill: 'Full Stack Development',
+   level: 'Legendary',
+   technologies: ['HTML','CSS','JavaScript','Python','AI']
+};
+
+console.log(developer);
+</pre>
+      </div>
+
+      <div class="code-box" style="margin-top:40px;">
+<pre>
+body{
+   background: linear-gradient(135deg,#050816,#0b102f);
+   overflow:hidden;
+}
+
+.neon-border{
+   border:2px solid cyan;
+   box-shadow:0 0 25px cyan;
+}
+</pre>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <h2>Futuristic Developer Skills</h2>
+      <p>
+        Master powerful technologies and evolve into a next generation creator.
+      </p>
+    </div>
+
+    <div class="languages">
+      <div class="language-box">
+        <h4>Frontend Mastery</h4>
+        <p>Create ultra modern websites and interactive interfaces.</p>
+      </div>
+
+      <div class="language-box">
+        <h4>Backend Systems</h4>
+        <p>Develop APIs, databases, authentication, and servers.</p>
+      </div>
+
+      <div class="language-box">
+        <h4>Game Development</h4>
+        <p>Design 2D and 3D gaming universes with engines.</p>
+      </div>
+
+      <div class="language-box">
+        <h4>AI Engineering</h4>
+        <p>Build smart futuristic systems powered by machine learning.</p>
+      </div>
+
+      <div class="language-box">
+        <h4>Animation Design</h4>
+        <p>Create smooth motion graphics and glowing transitions.</p>
+      </div>
+
+      <div class="language-box">
+        <h4>Mobile Apps</h4>
+        <p>Develop Android and iOS applications with modern frameworks.</p>
+      </div>
+
+      <div class="language-box">
+        <h4>Robotics</h4>
+        <p>Program machines and futuristic automation systems.</p>
+      </div>
+
+      <div class="language-box">
+        <h4>Blockchain</h4>
+        <p>Learn decentralized technologies and digital security.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <h2>Epic Coding Quotes</h2>
+      <p>
+        Inspiration for future developers and digital creators.
+      </p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>💻 Code The Impossible</h3>
+        <p>
+          Every revolutionary app starts with a single line of code.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🚀 Build The Future</h3>
+        <p>
+          Developers are the architects of tomorrow’s digital universe.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>⚡ Never Stop Learning</h3>
+        <p>
+          Technology evolves every second, and great developers evolve with it.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🌌 Dream Beyond Limits</h3>
+        <p>
+          Coding transforms imagination into interactive reality.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <h2>Ultimate Website Powers</h2>
+      <p>
+        This futuristic website contains advanced visual effects and interactive experiences.
+      </p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <span>✨</span>
+        <div>
+          <h3>Animated Glow Engine</h3>
+          <p>Dynamic neon effects create an immersive glowing light blue futuristic atmosphere.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span>🌠</span>
+        <div>
+          <h3>Galaxy Inspired Background</h3>
+          <p>Beautiful futuristic gradients and glowing particles enhance the design.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span>⚙️</span>
+        <div>
+          <h3>Modern Responsive Layout</h3>
+          <p>Automatically adapts across desktop, tablet, and mobile devices.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span>🔥</span>
+        <div>
+          <h3>Interactive Hover System</h3>
+          <p>Buttons, cards, and sections react smoothly to user interaction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="contact">
+      <h2>Join The CODEVERSE</h2>
+      <p>
+        Continue building futuristic projects, powerful gaming websites,
+        AI systems, and advanced applications. Become a legendary creator.
+      </p>
+
+      <a href="#home" class="btn primary">Enter The Future</a>
+    </div>
+  </section>
+
+</footer>
+
+  <script>
+    const cards = document.querySelectorAll('.card, .language-box, .timeline-item, .stat');
+
+    window.addEventListener('scroll', () => {
+      cards.forEach(card => {
+        const position = card.getBoundingClientRect().top;
+        const screen = window.innerHeight / 1.2;
+
+        if(position < screen){
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0px)';
+          card.style.transition = '0.8s ease';
+        }
+      });
+    });
+
+    cards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(60px)';
+    });
+
+    const heroTitle = document.querySelector('.hero-content h1');
+
+    setInterval(() => {
+      heroTitle.style.textShadow = `0 0 ${Math.random()*40}px #7be7ff`;
+    },500);
+  </script>
+
+</body>
+</html>
+
+
+
